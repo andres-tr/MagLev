@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Output\F3_Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Output\F3_Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Mon Mar 17 22:21:03 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue Mar 18 16:29:51 2014
 <BR><P>
 <H3>Maximum Stack Usage =         20 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -224,7 +224,7 @@ Global Symbols
 <P><STRONG><a name="[84]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[5b]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -528,12 +528,12 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[87]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 138 bytes, Stack size 12 bytes, system_stm32f30x.o(.text), UNUSED)
 
-<P><STRONG><a name="[63]"></a>delaybyms</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[63]"></a>delaybyms</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5c]"></a>main</STRONG> (Thumb, 132 bytes, Stack size 20 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = main
+<P><STRONG><a name="[5c]"></a>main</STRONG> (Thumb, 148 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = main
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delaybyms
 </UL>
