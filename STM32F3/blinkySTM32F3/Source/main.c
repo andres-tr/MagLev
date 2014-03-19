@@ -17,9 +17,9 @@ int main( void ){
 	
 	for(;;){
 		GPIOC->ODR = 0xFFFFFF01;
-		delaybyms(500);
+		delaybyms(10000);
 		GPIOC->ODR = 0xFFFFFF00;
-		delaybyms(500);
+		delaybyms(10000);
 		
 	}
 }
