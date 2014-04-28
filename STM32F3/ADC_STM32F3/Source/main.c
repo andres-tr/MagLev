@@ -48,7 +48,7 @@ int main(void) {
 	while (1) {
 		while(!(ADC1->ISR & ADC_ISR_EOC)); // Test EOC flag
 		ADC1ConvertedValue = ADC1->DR; //GetADC1converteddata
-		ADC1ConvertedVoltage = (ADC1ConvertedValue *3300)/4096; //Computethevoltage
+		ADC1ConvertedVoltage = (ADC1ConvertedValue * 3300)/(4096); //Computethevoltage
 	} 
 }
 

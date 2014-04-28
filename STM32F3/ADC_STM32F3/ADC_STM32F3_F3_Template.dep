@@ -1,18 +1,18 @@
 Dependencies for Project 'ADC_STM32F3', Target 'F3_Template': (DO NOT MODIFY !)
-F (.\Startup\startup_stm32f30x.s)(0x5325C39E)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F30x--list .\startup_stm32f30x.lst --xref -o .\output\startup_stm32f30x.o --depend .\output\startup_stm32f30x.d)
-F (.\Startup\system_stm32f30x.c)(0x5325C39E)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F30x-o .\output\system_stm32f30x.o --omf_browse .\output\system_stm32f30x.crf --depend .\output\system_stm32f30x.d)
-I (C:\Keil\ARM\Inc\ST\STM32F30x\stm32f30x.h)(0x520A6C54)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A6C12)
+F (.\Startup\startup_stm32f30x.s)(0x5325C39E)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F30x--list .\startup_stm32f30x.lst --xref -o .\output\startup_stm32f30x.o --depend .\output\startup_stm32f30x.d)
+F (.\Startup\system_stm32f30x.c)(0x5325C39E)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F30x-o .\output\system_stm32f30x.o --omf_browse .\output\system_stm32f30x.crf --depend .\output\system_stm32f30x.d)
+I (C:\Keil\ARM\Inc\ST\STM32F30x\stm32f30x.h)(0x532CAA2C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x532CAE92)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A6C10)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A6C12)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A6C10)
-I (C:\Keil\ARM\Inc\ST\STM32F30x\system_stm32f30x.h)(0x520A6C54)
-F (.\Source\main.c)(0x5328FF56)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F30x-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
-I (C:\Keil\ARM\Inc\ST\STM32F30x\stm32f30x.h)(0x520A6C54)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A6C12)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x532CAE92)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x532CAE92)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x532CAE92)
+I (C:\Keil\ARM\Inc\ST\STM32F30x\system_stm32f30x.h)(0x532CAA2C)
+F (.\Source\main.c)(0x5341F633)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F30x-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+I (C:\Keil\ARM\Inc\ST\STM32F30x\stm32f30x.h)(0x532CAA2C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x532CAE92)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A6C10)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A6C12)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A6C10)
-I (C:\Keil\ARM\Inc\ST\STM32F30x\system_stm32f30x.h)(0x520A6C54)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x532CAE92)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x532CAE92)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x532CAE92)
+I (C:\Keil\ARM\Inc\ST\STM32F30x\system_stm32f30x.h)(0x532CAA2C)
