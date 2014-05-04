@@ -1,109 +1,83 @@
-#include "main.h"
 #include <stm32f30x.h>
-#include <string.h>
-#include <stdio.h>
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-/* Extern variables ----------------------------------------------------------*/
-
-void Delay (uint32_t nTime);
-void ADCConfig();
-uint16_t readADC();
 
 
-char output[5];
+
 uint16_t ADC1ConvertedValue = 0; 
 uint16_t ADC1ConvertedVoltage = 0; 
 uint16_t calibration_value = 0; 
-char buf[6];
-
-//volatile uint32_t TimingDelay = 0;
-extern __IO uint8_t Receive_Buffer[64];
-extern __IO  uint32_t Receive_length ;
-extern __IO  uint32_t length ;
-uint8_t Send_Buffer[64];
-uint32_t packet_sent=1;
-uint32_t packet_receive=1;
 volatile uint32_t TimingDelay = 0;
 
+void Delay (uint32_t nTime);
+void ADCConfig();
+void readADC();
+void TIM3_Config();
+int flag = 0;
+float corrienteSensor = 0;
+float setPoint = 0.14;
+float feedback = 0;
+float error_actual = 0;
+float u_actual = 0;
+float u_pasado = 0;
+float error_pasado = 0;
+int dutyC;
 
-/* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
-/*******************************************************************************
-* Function Name  : main.
-* Descriptioan    : Main routine.
-* Input          : None.
-* Output         : None.
-* Return         : None.
-*******************************************************************************/
-int main(void)
-{
-	//Send_Buffer[0] = (uint8_t ) "Hello";
-	//length = 11;
-  Set_System();
-  Set_USBClock();
-  USB_Interrupts_Config();
-  USB_Init();
+int main(void) {
 	ADCConfig();
-  
-  while (1)
-  {
-    if (bDeviceState == CONFIGURED)
-    {
-      //CDC_Receive_DATA();
-			ADC1ConvertedVoltage = readADC();
-			sprintf(output,"%4d\n",ADC1ConvertedVoltage);
-			//CDC_Send_DATA ((unsigned char*)&ADC1ConvertedVoltage,2);
-			CDC_Send_DATA ((unsigned char*)&output,5);
+	TIM3_Config();
+
+	while (1){
+		//Si la lectura del sensor entra en el rango se realiza lo siguiente
+			//Traducir la referencia distancia (m) a corriente con la formula de la pendiente
+			//Leer el sensor
+			readADC();
+		//2263 2863
+			if(ADC1ConvertedVoltage > 2100 && ADC1ConvertedVoltage < 2900){
+				flag = 0;
+				//Convierto de voltaje del sensor pasando por el voltaje del micro a corriente
+				feedback = -0.00093*ADC1ConvertedVoltage + 2.626;
+				
+				error_actual = feedback - setPoint; //Considerar signos por la ganancia negativa
+				
+				//u_actual = ecuacion en diferencias
+					u_actual = (error_actual*259.8) - (error_pasado*2.126) - (u_pasado*0.4168);
+				
+				//u_anterior = u_actual
+					u_pasado = u_actual;
+				//e_anterior = e_actual
+					error_pasado = error_actual;
+				
+//Investigar el signo de lasvariables por el tipo 
 			
-      /*Check to see if we have data yet */
-      /*
-			if (Receive_length  != 0)
-      {
-        if (packet_sent == 1)
-          //CDC_Send_DATA ((unsigned char*)Receive_Buffer,Receive_length);
-					ADC1ConvertedVoltage = readADC();
-					//sprintf (buf, "%u", ADC1ConvertedVoltage);
-					CDC_Send_DATA ((unsigned char*)&ADC1ConvertedVoltage,2);
-					
-					//CDC_Send_DATA(Send_Buffer[0],length);
-        Receive_length = 0;
-      }
-			*/
-    }
-  }
-} 
-
-#ifdef USE_FULL_ASSERT
-/*******************************************************************************
-* Function Name  : assert_failed
-* Description    : Reports the name of the source file and the source line number
-*                  where the assert_param error has occurred.
-* Input          : - file: pointer to the source file name
-*                  - line: assert_param error line source number
-* Output         : None
-* Return         : None
-*******************************************************************************/
-void assert_failed(uint8_t* file, uint32_t line)
-{
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
-  while (1)
-  {}
+		
+				//Convertir el dato de la ley de control (A) al equivalente en PWM con sus saturacion 
+				if (u_actual <= 0){
+					TIM3->CCR3 = 0;
+				}else if(u_actual > 0.5){
+					TIM3->CCR3 = 1024;
+				}else{
+					dutyC = (int)((2325.5*u_actual) + 99.683);
+					//dutyC = ceil((2325.5*u_actual) + 99.683);
+					TIM3->CCR3 = dutyC;
+				}
+				
+		}else{
+				flag = 1;
+				TIM3->CCR3 = 0;
+		}
+	} 
 }
-#endif
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+void SysTick_Handler(void){
+	TimingDelay--; 
+}
 
-
-void ADCConfig(){
-// At this stage the microcontroller clock tree is already configured
-	RCC->CFGR2 |= RCC_CFGR2_ADCPRE12_DIV2; // Configure the ADC clock 
+void Delay (uint32_t nTime){
+  TimingDelay = nTime;
+	while (TimingDelay !=0); 
+}
+void ADCConfig(void){
+	// At this stage the microcontroller clock tree is already configured
+ 	RCC->CFGR2 |= RCC_CFGR2_ADCPRE12_DIV2; // Configure the ADC clock 
 	RCC->AHBENR |= RCC_AHBENR_ADC12EN; //EnableADC1clock
 	// Setup SysTick Timer for 1 µsec interrupts
 	if (SysTick_Config(SystemCoreClock / 1000000)){
@@ -141,20 +115,26 @@ void ADCConfig(){
 }
 
 
-void SysTick_Handler(void){
-	TimingDelay--; 
-}
-
-void Delay (uint32_t nTime){
-  TimingDelay = nTime;
-	while (TimingDelay !=0); 
-}
-
-
-
-uint16_t readADC(){
+void readADC(void){
 	while(!(ADC1->ISR & ADC_ISR_EOC)); // Test EOC flag
-	ADC1ConvertedValue = ADC1->DR; //GetADC1converteddata
-	ADC1ConvertedVoltage = (ADC1ConvertedValue * 3300)/(4096); //Computethevoltage
-	return ADC1ConvertedVoltage;
+		ADC1ConvertedValue = ADC1->DR; //GetADC1converteddata
+		ADC1ConvertedVoltage = (ADC1ConvertedValue * 3300)/(4095); //Computethevoltage
+}
+
+void TIM3_Config(void) {
+	/*
+	For PWM - PA1
+	*/
+	
+	RCC->AHBENR|=1<<19;// enable Port C clock   slide 16 GPIOS PowerPoint
+	RCC->APB1ENR|=RCC_APB1ENR_TIM3EN;// enable CLOCK of TIM3
+	GPIOC->MODER|=2<<(8*2);//PC8 as alternate funtion mode 
+	GPIOC->AFR[1]|=2;// Select AF2 for PC8  TIMER 3 CHANNEL 3
+	
+	TIM3->PSC=0; // Values for frecuency = 10 000 Hz
+	TIM3->CCR3=0;
+	TIM3->ARR=2465;
+	TIM3->CCMR2|= TIM_CCMR2_OC3M_2|TIM_CCMR2_OC3M_1;
+	TIM3->CCER|=TIM_CCER_CC3E;//Enable output compare
+	TIM3->CR1|=TIM_CR1_CEN;//ENABLE TIMER
 }

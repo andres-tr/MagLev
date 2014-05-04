@@ -208,19 +208,7 @@
           <WinNumber>1</WinNumber>
           <ItemText>accum,0x0A</ItemText>
         </Ww>
-        <Ww>
-          <count>9</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>ADC1ConvertedVoltage,0x0A</ItemText>
-        </Ww>
       </WatchWindow1>
-      <MemoryWindow1>
-        <Mm>
-          <WinNumber>1</WinNumber>
-          <SubType>262</SubType>
-          <ItemText>0x20000016</ItemText>
-        </Mm>
-      </MemoryWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -269,7 +257,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>176</TopLine>
+      <TopLine>170</TopLine>
       <CurrentLine>179</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup\startup_stm32f30x.s</PathWithFileName>
@@ -310,7 +298,7 @@
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <CurrentLine>8</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Source\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>

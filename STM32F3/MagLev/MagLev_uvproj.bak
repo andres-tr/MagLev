@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>MagLev</TargetName>
+      <TargetName>F3_Template</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>

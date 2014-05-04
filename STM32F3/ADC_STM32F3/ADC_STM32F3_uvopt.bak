@@ -309,8 +309,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>55</CurrentLine>
+      <TopLine>32</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Source\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>

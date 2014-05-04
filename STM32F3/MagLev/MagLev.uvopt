@@ -21,7 +21,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>F3_Template</TargetName>
+    <TargetName>MagLev</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -76,6 +76,28 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>255</CpuCode>
+      <Books>
+        <Book>
+          <Number>0</Number>
+          <Title>Datasheet</Title>
+          <Path>DATASHTS\ST\STM32F30x\DM00058181.pdf</Path>
+        </Book>
+        <Book>
+          <Number>1</Number>
+          <Title>Reference Manual</Title>
+          <Path>DATASHTS\ST\STM32F30x\DM00043574.pdf</Path>
+        </Book>
+        <Book>
+          <Number>2</Number>
+          <Title>Technical Reference Manual</Title>
+          <Path>datashts\arm\cortex_m4\r0p1\DDI0439C_CORTEX_M4_R0P1_TRM.PDF</Path>
+        </Book>
+        <Book>
+          <Number>3</Number>
+          <Title>Generic User Guide</Title>
+          <Path>datashts\arm\cortex_m4\r0p1\DUI0553A_CORTEX_M4_DGUG.PDF</Path>
+        </Book>
+      </Books>
       <DebugOpt>
         <uSim>0</uSim>
         <uTrg>1</uTrg>
@@ -131,12 +153,12 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U-O206 -O8398 -S3 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8004 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN2 -FF0STM32F3xx_256 -FS08000000 -FL040000 -FF1STM32F3xx_OPT -FS11FFFF800 -FL110</Name>
+          <Name>-U-O206 -O8398 -S3 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC800 -FN1 -FF0STM32F3xx_256 -FS08000000 -FL040000</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>UL2CM3(-O207 -S0 -C0 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F3xx_256 -FS08000000 -FL040000)</Name>
+          <Name>UL2CM3(-O207 -S0 -C0 -FO7  -FN1 -FC800 -FD20000000 -FF0STM32F3xx_256 -FL040000 -FS08000000</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint/>
@@ -144,7 +166,62 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>bDeviceState</ItemText>
+          <ItemText>A,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>B,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>C,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>i,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>j,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>k,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>A[i][k],0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>B[k][j],0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>accum,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>error_actual,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>flag,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>u_actual</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -152,7 +229,7 @@
       </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
-        <periodic>0</periodic>
+        <periodic>1</periodic>
         <aLwin>1</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
@@ -182,7 +259,7 @@
   </Target>
 
   <Group>
-    <GroupName>STM32F3_System</GroupName>
+    <GroupName>Startup</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -190,16 +267,16 @@
     <File>
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>1</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>130</TopLine>
-      <CurrentLine>146</CurrentLine>
+      <TopLine>175</TopLine>
+      <CurrentLine>179</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\main.c</PathWithFileName>
-      <FilenameWithoutPath>main.c</FilenameWithoutPath>
+      <PathWithFileName>.\Startup\startup_stm32f30x.s</PathWithFileName>
+      <FilenameWithoutPath>startup_stm32f30x.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -209,640 +286,48 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>176</TopLine>
-      <CurrentLine>55</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\stm32f30x_it.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_it.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>3</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\system_stm32f30x.c</PathWithFileName>
+      <PathWithFileName>.\Startup\system_stm32f30x.c</PathWithFileName>
       <FilenameWithoutPath>system_stm32f30x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>4</FileNumber>
-      <FileType>2</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>173</TopLine>
-      <CurrentLine>179</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\startup_stm32f30x.s</PathWithFileName>
-      <FilenameWithoutPath>startup_stm32f30x.s</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
   </Group>
 
   <Group>
-    <GroupName>USB_ST_Driver</GroupName>
-    <tvExp>0</tvExp>
+    <GroupName>Source</GroupName>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>5</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32_USB-FS-Device_Driver\src\usb_sil.c</PathWithFileName>
-      <FilenameWithoutPath>usb_sil.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>6</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32_USB-FS-Device_Driver\src\usb_core.c</PathWithFileName>
-      <FilenameWithoutPath>usb_core.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>7</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32_USB-FS-Device_Driver\src\usb_init.c</PathWithFileName>
-      <FilenameWithoutPath>usb_init.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>8</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32_USB-FS-Device_Driver\src\usb_int.c</PathWithFileName>
-      <FilenameWithoutPath>usb_int.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>9</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32_USB-FS-Device_Driver\src\usb_mem.c</PathWithFileName>
-      <FilenameWithoutPath>usb_mem.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>10</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32_USB-FS-Device_Driver\src\usb_regs.c</PathWithFileName>
-      <FilenameWithoutPath>usb_regs.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-  </Group>
-
-  <Group>
-    <GroupName>Misc</GroupName>
-    <tvExp>0</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>11</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\Misc\delay.c</PathWithFileName>
-      <FilenameWithoutPath>delay.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-  </Group>
-
-  <Group>
-    <GroupName>PeripheralDrivers</GroupName>
-    <tvExp>0</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>12</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_wwdg.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_wwdg.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>13</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>25</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_adc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_adc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>14</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_can.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_can.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>15</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_comp.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_comp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>16</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_crc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_crc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>17</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_dac.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_dac.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>18</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_dbgmcu.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_dbgmcu.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>19</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_dma.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_dma.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>20</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_exti.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_exti.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>21</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_flash.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_flash.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>22</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>22</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>157</TopLine>
-      <CurrentLine>170</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_gpio.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_gpio.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>23</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_i2c.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_i2c.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>24</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_iwdg.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_iwdg.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>25</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_misc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_misc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>26</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_opamp.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_opamp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>27</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_pwr.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_pwr.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>28</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>32</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1339</TopLine>
-      <CurrentLine>1352</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_rcc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_rcc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>29</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_rtc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_rtc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>30</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_spi.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_spi.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>31</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_syscfg.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_syscfg.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>32</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_tim.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_tim.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>33</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\STM32F30x_StdPeriph_Driver\src\stm32f30x_usart.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f30x_usart.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-  </Group>
-
-  <Group>
-    <GroupName>USB_ApplicationInterface</GroupName>
-    <tvExp>0</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>34</FileNumber>
+      <FileNumber>3</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>26</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>11</TopLine>
-      <CurrentLine>39</CurrentLine>
+      <TopLine>13</TopLine>
+      <CurrentLine>15</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\USB_ApplicationInterface\usb_pwr.c</PathWithFileName>
-      <FilenameWithoutPath>usb_pwr.c</FilenameWithoutPath>
+      <PathWithFileName>.\Source\main.c</PathWithFileName>
+      <FilenameWithoutPath>main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>35</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>120</TopLine>
-      <CurrentLine>148</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\USB_ApplicationInterface\hw_config.c</PathWithFileName>
-      <FilenameWithoutPath>hw_config.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>36</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\USB_ApplicationInterface\usb_desc.c</PathWithFileName>
-      <FilenameWithoutPath>usb_desc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>37</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>39</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>33</TopLine>
-      <CurrentLine>46</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\USB_ApplicationInterface\usb_endp.c</PathWithFileName>
-      <FilenameWithoutPath>usb_endp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>38</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\USB_ApplicationInterface\usb_istr.c</PathWithFileName>
-      <FilenameWithoutPath>usb_istr.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
-      <FileNumber>39</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>113</TopLine>
-      <CurrentLine>207</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\USB_ApplicationInterface\usb_prop.c</PathWithFileName>
-      <FilenameWithoutPath>usb_prop.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
+  </Group>
+
+  <Group>
+    <GroupName>Lib</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
   </Group>
 
 </ProjectOpt>
