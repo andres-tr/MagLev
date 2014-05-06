@@ -1,7 +1,5 @@
 #include <stm32f30x.h>
 
-
-
 uint16_t ADC1ConvertedValue = 0; 
 uint16_t ADC1ConvertedVoltage = 0; 
 uint16_t calibration_value = 0; 
@@ -12,26 +10,40 @@ void ADCConfig();
 void readADC();
 void TIM3_Config();
 int flag = 0;
+int flag2 = 0;
 float corrienteSensor = 0;
-float setPoint = 0.14;
+//setPoint 0.49 --> Sumando y restando setPoint con una saturacion >.71 -- 1750 0.0002 > < 0.5 *0.1
+//setPoint 0.49 --> Sumando y restando setPoint con una saturacion >.69 -- 1693
+//setPoint 0.49 --> Sumando y restando setPoint con una saturacion >.68 -- 1681
+float setPoint = 0.41;
 float feedback = 0;
 float error_actual = 0;
 float u_actual = 0;
 float u_pasado = 0;
+float corriente = 0;
 float error_pasado = 0;
+float a = 0.49;
+int b = 1750;
 int dutyC;
+
 
 int main(void) {
 	ADCConfig();
 	TIM3_Config();
 
 	while (1){
+		
+		if (flag2 == 11000){
+			a = .594;
+			b = 1481;
+		}
 		//Si la lectura del sensor entra en el rango se realiza lo siguiente
 			//Traducir la referencia distancia (m) a corriente con la formula de la pendiente
 			//Leer el sensor
 			readADC();
 		//2263 2863
-			if(ADC1ConvertedVoltage > 2100 && ADC1ConvertedVoltage < 2900){
+			if(ADC1ConvertedVoltage > 2000 && ADC1ConvertedVoltage < 2900){
+				flag2++;
 				flag = 0;
 				//Convierto de voltaje del sensor pasando por el voltaje del micro a corriente
 				feedback = -0.00093*ADC1ConvertedVoltage + 2.626;
@@ -39,7 +51,10 @@ int main(void) {
 				error_actual = feedback - setPoint; //Considerar signos por la ganancia negativa
 				
 				//u_actual = ecuacion en diferencias
-					u_actual = (error_actual*259.8) - (error_pasado*2.126) - (u_pasado*0.4168);
+					u_actual = (error_actual*259.8) - (error_pasado*2.126) - (u_pasado*0.4168); //Ley de control numero 1
+				//u_actual = (error_actual*2.598) - (error_pasado*0.02126) - (u_pasado*0.004168); //Ley de control numero 5
+					//u_actual = (error_actual*13314.625) - (error_pasado*9310.2); //Ley de control numero 4
+				//u_actual = (error_actual*459.8) - (error_pasado*384.6) + (u_pasado*0.2015); //Ley de control numero 2
 				
 				//u_anterior = u_actual
 					u_pasado = u_actual;
@@ -50,12 +65,22 @@ int main(void) {
 			
 		
 				//Convertir el dato de la ley de control (A) al equivalente en PWM con sus saturacion 
-				if (u_actual <= 0){
-					TIM3->CCR3 = 0;
-				}else if(u_actual > 0.5){
-					TIM3->CCR3 = 1024;
+				//corriente = ((u_actual)*0.01); 
+				//corriente = u_actual;
+				
+				if(error_actual > -0.05	&& error_actual < 0.05){
+					corriente = (u_actual*0.0001) + setPoint;
 				}else{
-					dutyC = (int)((2325.5*u_actual) + 99.683);
+					corriente = (u_actual*0.1) + setPoint;
+				}
+				
+				
+				if (corriente <= 0.000001){
+					TIM3->CCR3 = 0;
+				}else if(corriente >a){ //.7 //.65
+					TIM3->CCR3 = b;
+				}else{
+					dutyC = (int)((2325.5*(corriente)) + 99.683);
 					//dutyC = ceil((2325.5*u_actual) + 99.683);
 					TIM3->CCR3 = dutyC;
 				}
@@ -63,6 +88,11 @@ int main(void) {
 		}else{
 				flag = 1;
 				TIM3->CCR3 = 0;
+				u_actual = 0;
+				u_pasado = 0;
+				error_actual = 0;
+				error_pasado = 0;
+			  
 		}
 	} 
 }
@@ -107,7 +137,8 @@ void ADCConfig(void){
 	/* ADC1 regular channel7 configuration */	
 	ADC1->SQR1 |= ADC_SQR1_SQ1_2 | ADC_SQR1_SQ1_1 | ADC_SQR1_SQ1_0; // SQ1 = 0x07, start converting ch7
 	ADC1->SQR1 &= ~ADC_SQR1_L; // ADC regular channel sequence length = 0 => 1 conversion/sequence
-	ADC1->SMPR1 |= ADC_SMPR1_SMP7_1 | ADC_SMPR1_SMP7_0; //=0x03=>samplingtime7.5ADCclockcycles
+	//ADC1->SMPR1 |= ADC_SMPR1_SMP7_1 | ADC_SMPR1_SMP7_0; //=0x03=>samplingtime7.5ADCclockcycles 2<<(8*2)
+	ADC1->SMPR1 |=7<<(21);	
 	ADC1->CR |= ADC_CR_ADEN; //EnableADC1
 	while(!ADC1->ISR & ADC_ISR_ADRD); //waitforADRDY
 
@@ -121,7 +152,7 @@ void readADC(void){
 		ADC1ConvertedVoltage = (ADC1ConvertedValue * 3300)/(4095); //Computethevoltage
 }
 
-void TIM3_Config(void) {
+ void TIM3_Config(void) {
 	/*
 	For PWM - PA1
 	*/
