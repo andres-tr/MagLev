@@ -58,14 +58,15 @@ void readADC();
 void TIM3_Config();
 int flag = 0;
 float corrienteSensor = 0;
-float setPoint = 0.30;
+float setPoint = 0.49;
 float feedback = 0;
 float error_actual = 0;
 float u_actual = 0;
 float u_pasado = 0;
 float error_pasado = 0;
 int dutyC;
-char buf[10];
+char buf[5];
+float corriente = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Functions ---------------------------------------------------------*/
@@ -126,29 +127,38 @@ int main(void)
 				//u_actual = (error_actual*256.5) - (error_pasado*202.3) + (u_pasado*0.6211); //Ley de control numero 3
 				//u_actual = (error_actual*13314.625) - (error_pasado*9310.2); //Ley de control numero 4
 				//u_anterior = u_actual
-				u_pasado = u_actual;
+				//u_pasado = u_actual;
 				//e_anterior = e_actual
+				
+				if(error_actual > -0.05	&& error_actual < 0.05){
+					corriente = (u_actual*0.0001) + setPoint;
+				}else{
+					corriente = (u_actual*0.1) + setPoint;
+				}
+				
+				
 				error_pasado = error_actual;
 		
 				//Convertir el dato de la ley de control (A) al equivalente en PWM con su saturacion 
-				if (u_actual <= 0){
+				if (corriente <= 0.000001){
 					TIM3->CCR3 = 0;
-				}else if(u_actual > 0.5){
-					TIM3->CCR3 = 1024;
+				}else if(corriente >.75){ //.7 //.65
+					TIM3->CCR3 = 1797;
 				}else{
-					dutyC = (int)((2325.5*u_actual) + 99.683);
+					dutyC = (int)((2325.5*(corriente)) + 99.683);
 					//dutyC = ceil((2325.5*u_actual) + 99.683);
 					TIM3->CCR3 = dutyC;
 				}
-				sprintf(buf,"%f\n",error_actual);
-				CDC_Send_DATA((unsigned char*)&buf,10);
+				
+				sprintf(buf,"%d\n",ADC1ConvertedVoltage);
+				CDC_Send_DATA((unsigned char*)&buf,5);
 				
 		}else{
 				flag = 1;
 				TIM3->CCR3 = 0;
 				error_actual = 1.0000000;
-				sprintf(buf,"%f\n",error_actual);
-				CDC_Send_DATA((unsigned char*)&buf,10);
+				sprintf(buf,"%d\n",ADC1ConvertedVoltage);
+				CDC_Send_DATA((unsigned char*)&buf,5);
 		}
 //___________________________ Controlador ___________________________ 
     }

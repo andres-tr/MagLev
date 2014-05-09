@@ -10,20 +10,19 @@ void ADCConfig();
 void readADC();
 void TIM3_Config();
 int flag = 0;
-int flag2 = 0;
+
 float corrienteSensor = 0;
 //setPoint 0.49 --> Sumando y restando setPoint con una saturacion >.71 -- 1750 0.0002 > < 0.5 *0.1
 //setPoint 0.49 --> Sumando y restando setPoint con una saturacion >.69 -- 1693
 //setPoint 0.49 --> Sumando y restando setPoint con una saturacion >.68 -- 1681
-float setPoint = 0.41;
+float setPoint = 0.39;
 float feedback = 0;
 float error_actual = 0;
 float u_actual = 0;
 float u_pasado = 0;
 float corriente = 0;
 float error_pasado = 0;
-float a = 0.49;
-int b = 1750;
+
 int dutyC;
 
 
@@ -33,20 +32,19 @@ int main(void) {
 
 	while (1){
 		
-		if (flag2 == 11000){
-			a = .594;
-			b = 1481;
-		}
+		
 		//Si la lectura del sensor entra en el rango se realiza lo siguiente
 			//Traducir la referencia distancia (m) a corriente con la formula de la pendiente
 			//Leer el sensor
 			readADC();
 		//2263 2863
 			if(ADC1ConvertedVoltage > 2000 && ADC1ConvertedVoltage < 2900){
-				flag2++;
+				
 				flag = 0;
 				//Convierto de voltaje del sensor pasando por el voltaje del micro a corriente
-				feedback = -0.00093*ADC1ConvertedVoltage + 2.626;
+				//feedback = -0.00093*ADC1ConvertedVoltage + 2.626;
+				//feedback = -0.00093*ADC1ConvertedVoltage - 1.626;
+				feedback = -0.00093*ADC1ConvertedVoltage + 2.616;
 				
 				error_actual = feedback - setPoint; //Considerar signos por la ganancia negativa
 				
@@ -71,14 +69,14 @@ int main(void) {
 				if(error_actual > -0.05	&& error_actual < 0.05){
 					corriente = (u_actual*0.0001) + setPoint;
 				}else{
-					corriente = (u_actual*0.1) + setPoint;
+					corriente = (u_actual) + setPoint;
 				}
 				
-				
+				//.4 .79 1937
 				if (corriente <= 0.000001){
 					TIM3->CCR3 = 0;
-				}else if(corriente >a){ //.7 //.65
-					TIM3->CCR3 = b;
+				}else if(corriente > .8){ //.7 //.65
+					TIM3->CCR3 = 2192;
 				}else{
 					dutyC = (int)((2325.5*(corriente)) + 99.683);
 					//dutyC = ceil((2325.5*u_actual) + 99.683);
