@@ -118,6 +118,7 @@ int main(void)
 				//Convierto de voltaje del sensor pasando por el voltaje del micro a corriente
 				//feedback = -0.00093*ADC1ConvertedVoltage + 2.626; 
 				feedback = -0.0009303822*ADC1ConvertedVoltage + 2.626037234; 
+				
 				//Punto suma
 				error_actual = feedback - setPoint; //Considerar signos por la ganancia negativa
 				
@@ -130,31 +131,34 @@ int main(void)
 				//u_pasado = u_actual;
 				//e_anterior = e_actual
 				
-				if(error_actual > -0.05	&& error_actual < 0.05){
-					corriente = (u_actual*0.0001) + setPoint;
+				if(error_actual > -0.05	&& error_actual < 0.05){ //Si el error es muy pequeÃ±o la corriente se fija igual al set point esto por las variaciones en medicion que tiene el ADC
+					corriente = setPoint; 
 				}else{
-					corriente = (u_actual*0.1) + setPoint;
+					corriente = u_actual + setPoint;
 				}
 				
-				
+				//Actualizacion de variables
 				error_pasado = error_actual;
+				u_pasado = corriente;
 		
 				//Convertir el dato de la ley de control (A) al equivalente en PWM con su saturacion 
 				if (corriente <= 0.000001){
 					TIM3->CCR3 = 0;
-				}else if(corriente >.75){ //.7 //.65
+				}else if(corriente >.75){ 
 					TIM3->CCR3 = 1797;
 				}else{
 					dutyC = (int)((2325.5*(corriente)) + 99.683);
 					//dutyC = ceil((2325.5*u_actual) + 99.683);
 					TIM3->CCR3 = dutyC;
 				}
-				
+				//Dato a monitorear en el HMI
 				sprintf(buf,"%d\n",ADC1ConvertedVoltage);
 				CDC_Send_DATA((unsigned char*)&buf,5);
 				
 		}else{
+				
 				flag = 1;
+				//Duty cycle = 0
 				TIM3->CCR3 = 0;
 				error_actual = 1.0000000;
 				sprintf(buf,"%d\n",ADC1ConvertedVoltage);
@@ -198,7 +202,7 @@ void ADCConfig(void){
 	// At this stage the microcontroller clock tree is already configured
  	RCC->CFGR2 |= RCC_CFGR2_ADCPRE12_DIV2; // Configure the ADC clock 
 	RCC->AHBENR |= RCC_AHBENR_ADC12EN; //EnableADC1clock
-	// Setup SysTick Timer for 1 µsec interrupts
+	// Setup SysTick Timer for 1 ï¿½sec interrupts
 	if (SysTick_Config(SystemCoreClock / 1000000)){
 	// Capture error
 	while (1){} 
@@ -211,7 +215,7 @@ void ADCConfig(void){
 	/* Calibration procedure */	
 	ADC1->CR &= ~ADC_CR_ADVREGEN;
 	ADC1->CR |= ADC_CR_ADVREGEN_0; // 01: ADC Voltage regulator enabled 
-	Delay(10); // Insert delay equal to 10 µs
+	Delay(10); // Insert delay equal to 10 ï¿½s
 	ADC1->CR &= ~ADC_CR_ADCALDIF; //calibrationinSingle-endedinputsMode. 
 	ADC1->CR |= ADC_CR_ADCAL; //StartADCcalibration
 	// Read at 1 means that a calibration in progress.
@@ -241,9 +245,6 @@ void readADC(void){
 }
 
 void TIM3_Config(void) {
-	/*
-	For PWM - PA1
-	*/
 	
 	RCC->AHBENR|=1<<19;// enable Port C clock   slide 16 GPIOS PowerPoint
 	RCC->APB1ENR|=RCC_APB1ENR_TIM3EN;// enable CLOCK of TIM3
