@@ -11,8 +11,8 @@
 *.sct
 *.crf
 *.d
-*/History/*
-*/__Previews/*
+PCB/MagLev/History/*
+PCB/MagLev/__Previews/*
 
 
 
