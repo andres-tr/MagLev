@@ -11,6 +11,7 @@
 *.sct
 *.crf
 *.d
+*.DS_Store
 History/
 __Previews/
 
