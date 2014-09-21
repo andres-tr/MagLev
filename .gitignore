@@ -11,6 +11,8 @@
 *.sct
 *.crf
 *.d
+History/
+__Previews/
 
 
 
