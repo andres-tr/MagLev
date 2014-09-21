@@ -6,13 +6,13 @@
 *.uvgui*
 *.htm
 *.axf
-*.hex
+*.hx
 *.lnp
 *.sct
 *.crf
 *.d
-PCB/MagLev/History/*
-PCB/MagLev/__Previews/*
+History/
+__Previews/
 
 
 

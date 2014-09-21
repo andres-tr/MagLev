@@ -1,8 +1,0 @@
---cpu Cortex-M4.fp
-".\output\startup_stm32f30x.o"
-".\output\system_stm32f30x.o"
-".\output\main.o"
---strict --scatter ".\Output\F3_Template.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
---info sizes --info totals --info unused --info veneers
---list ".\F3_Template.map" -o .\Output\F3_Template.axf
