@@ -1,0 +1,5 @@
+Remove Pin=ST-5 From Net=SENSOR_OUTPUT
+Remove Pin=ST-47 From Net=LED_RED
+Change Component Comment: Designator=P1 Old Comment=Header 3 New Comment=Hall Sensor
+Change Pin Designator/Name:  Old Designator=ST-48 Old Name=pc7 New Designator =pc1 New Name=5
+Change Pin Designator/Name:  Old Designator=ST-97 Old Name=pc8 New Designator =3V New Name=1

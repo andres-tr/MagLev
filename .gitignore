@@ -15,7 +15,15 @@
 History/
 __Previews/
 
-
-
-
+#Altium
+*/History/*
+*.PrjPCBStructure
+*.SchDocPreview
+*.PcbDocPreview
+*\__Previews
+*\History
+*.PrjPcbStructure
+*~$*
+*/Project Logs*
+*.LOG
 

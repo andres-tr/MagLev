@@ -1,0 +1,4 @@
+Remove Pin=ST-5 From Net=SENSOR_OUTPUT
+Remove Pin=ST-47 From Net=LED_RED
+Remove Pin=ST-48 From Net=LED_GREEN
+Remove Pin=ST-97 From Net=PWM

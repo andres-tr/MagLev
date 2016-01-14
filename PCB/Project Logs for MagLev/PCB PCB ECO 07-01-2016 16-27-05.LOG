@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=SENSOR_OUTPUT Pin=ST-5
+Added Pin To Net: NetName=LED_RED Pin=ST-47
+Added Pin To Net: NetName=LED_GREEN Pin=ST-48
+Added Pin To Net: NetName=PWM Pin=ST-97
