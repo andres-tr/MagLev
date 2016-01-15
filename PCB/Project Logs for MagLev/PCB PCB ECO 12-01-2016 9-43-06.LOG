@@ -1,8 +1,0 @@
-Removed Pin From Net: NetName=GND Pin=C1-1
-Removed Pin From Net: NetName=5V Pin=C1-2
-Change Component DesignItemId : Designator=C1 Old DesignItemId=Cap New DesignItemId=T520D
-Change Component Footprint: Designator=C1 Old Footprint=RAD-0.3 New Footprint=D
-Change Component Comment : Designator=C1 Old Comment=Cap New Comment=T520D
-Added Pin To Net: NetName=5V Pin=C1-1
-Added Pin To Net: NetName=GND Pin=C1-2
-Added Room: Name=schematic

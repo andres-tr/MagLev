@@ -1,8 +1,0 @@
-Removed Pin From Net: NetName=SENSOR_OUTPUT Pin=ST-2
-Removed Pin From Net: NetName=3V Pin=ST-3
-Removed Pin From Net: NetName=5V Pin=ST-4
-Removed Pin From Net: NetName=LED_RED Pin=ST-6
-Removed Pin From Net: NetName=GND Pin=ST-7
-Added Pin To Net: NetName=3V Pin=ST-1
-Added Pin To Net: NetName=GND Pin=ST-50
-Added Pin To Net: NetName=5V Pin=ST-51
