@@ -28,3 +28,9 @@ __Previews/
 *.LOG
 */PCB/Project Logs for MagLev/
 MagLev/PCB/Project Logs for MagLev/
+*.cam
+*/Gerber/*
+*.OutJob
+*/NC Drill/*
+*/Project Outputs for MagLev/*
+Status Report.Txt
