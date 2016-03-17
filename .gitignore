@@ -32,5 +32,8 @@ MagLev/PCB/Project Logs for MagLev/
 */Gerber/*
 *.OutJob
 */NC Drill/*
-*/Project Outputs for MagLev/*
+#*/Project Outputs for MagLev/*
+PCB/Project Outputs for MagLev/Design Rule Check - PCB.drc
+PCB/Project Outputs for MagLev/Gerber/*
+*.html
 Status Report.Txt
