@@ -128,63 +128,51 @@ DocumentPath=Project Outputs for MagLev\Design Rule Check - PCB.html
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=NC Drill\PCB.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument3]
 DocumentPath=Gerber\PCB.EXTREP
 DItemRevisionGUID=
 
-[GeneratedDocument4]
+[GeneratedDocument3]
 DocumentPath=Gerber\PCB.GBL
 DItemRevisionGUID=
 
-[GeneratedDocument5]
+[GeneratedDocument4]
 DocumentPath=Gerber\PCB.GBO
 DItemRevisionGUID=
 
-[GeneratedDocument6]
+[GeneratedDocument5]
 DocumentPath=Gerber\PCB.GBS
 DItemRevisionGUID=
 
-[GeneratedDocument7]
+[GeneratedDocument6]
 DocumentPath=Gerber\PCB.GPB
 DItemRevisionGUID=
 
-[GeneratedDocument8]
+[GeneratedDocument7]
 DocumentPath=Gerber\PCB.GPT
 DItemRevisionGUID=
 
-[GeneratedDocument9]
+[GeneratedDocument8]
 DocumentPath=Gerber\PCB.GTL
 DItemRevisionGUID=
 
-[GeneratedDocument10]
+[GeneratedDocument9]
 DocumentPath=Gerber\PCB.GTO
 DItemRevisionGUID=
 
-[GeneratedDocument11]
+[GeneratedDocument10]
 DocumentPath=Gerber\PCB.GTP
 DItemRevisionGUID=
 
-[GeneratedDocument12]
+[GeneratedDocument11]
 DocumentPath=Gerber\PCB.GTS
 DItemRevisionGUID=
 
-[GeneratedDocument13]
-DocumentPath=NC Drill\PCB.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument14]
+[GeneratedDocument12]
 DocumentPath=Gerber\PCB.REP
 DItemRevisionGUID=
 
-[GeneratedDocument15]
+[GeneratedDocument13]
 DocumentPath=Gerber\PCB.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=NC Drill\PCB.TXT
 DItemRevisionGUID=
 
 [Configuration1]
