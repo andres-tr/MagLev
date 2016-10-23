@@ -37,7 +37,6 @@ PCB/Project Outputs for MagLev/Design Rule Check - PCB.drc
 PCB/Project Outputs for MagLev/Gerber/*
 *.html
 Status Report.Txt
-Assembly/
 OldVersions/
 lockfile.*
-
+/STEP
