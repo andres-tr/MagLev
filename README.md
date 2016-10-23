@@ -2,7 +2,7 @@ MagLev
 ===================
 
 <p align="center">
-  <img src=https://github.com/andres-tr/MagLev/blob/master/.img/MagLev.gif width="270"/><img src=https://github.com/andres-tr/MagLev/blob/master/.img/HMI.gif width="270"/>
+  <img src=https://github.com/andres-tr/MagLev/blob/master/.img/MagLev.gif width="270" height="180" /><img src=https://github.com/andres-tr/MagLev/blob/master/.img/HMI.gif width="270" "height 180"/>
 </p>
 
 
